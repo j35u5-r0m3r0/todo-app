@@ -19,14 +19,14 @@ export class TodoComponent {
     private taskSrv: TasksService
   ){}
 
-  public onDeleteTask(index: number): void {
+  public onDeleteTask(id: string): void {
     //this.tasks.splice(index,1);
-    this.taskSrv.deleteTask(index);
+    this.taskSrv.deleteTask(id);
   }
 
-  public onCompleteTask(index: number):void {
+  public onCompleteTask(id: string):void {
     //this.tasks[index].isCompleted = !this.tasks[index].isCompleted;
-    this.taskSrv.completeTask(index);
+    this.taskSrv.completeTask(id);
   }
 
   public onNewTask(task: Task): void {
