@@ -9,33 +9,10 @@ import { TasksService } from '../../services/tasks.service';
   styleUrl: './todo.component.css'
 })
 export class TodoComponent {
-  public tasks: Array<Task> = [
-    {
-      description: "crear aplicación ToDo",
-      isCompleted: true
-    },
-    {
-      description: "iniciaizar aplicación Todo",
-      isCompleted: false
-    },
-    {
-      description: "crear módulo todo",
-      isCompleted: false
-    },
-    {
-      description: "crear primer componente",
-      isCompleted: false
-    },
-    {
-      description: "crear componentes secundarios",
-      isCompleted: false
-    },
-    {
-      description: "finalizar aplicación",
-      isCompleted: false
-    },
-  ];
 
+  get tasks(): Array<Task> {
+    return this.taskSrv.tasks;
+  } 
   // otra forma de injectar un servicio en un componente
   //private tasksSrv = inject(TasksService);
   constructor(
@@ -43,15 +20,18 @@ export class TodoComponent {
   ){}
 
   public onDeleteTask(index: number): void {
-    this.tasks.splice(index,1);
+    //this.tasks.splice(index,1);
+    this.taskSrv.deleteTask(index);
   }
 
   public onCompleteTask(index: number):void {
-    this.tasks[index].isCompleted = !this.tasks[index].isCompleted;
+    //this.tasks[index].isCompleted = !this.tasks[index].isCompleted;
+    this.taskSrv.completeTask(index);
   }
 
   public onNewTask(task: Task): void {
-    this.tasks.push(task);
+    //this.tasks.push(task);
+    this.taskSrv.addTask(task);
   }
 
 }
